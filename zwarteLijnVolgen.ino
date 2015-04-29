@@ -8,6 +8,7 @@ int snelheidRechts;
 int sensorLinks = 7;
 int sensorMidden = 4;
 int sensorRechts = 3;
+int servoMotorPin = 9;
 //waarde van de lichtsensor
 int sensorWaardeLinks;
 int sensorWaardeMidden;
@@ -110,6 +111,29 @@ void rechterMotor(int snelheidRechts)
 
 void ObstakelDetecteren()
 { 
+  
+       ServoMotor(-20);
+    delay(200);
+  ServoMotor(-40);
+  delay(200);
+  ServoMotor(-60);
+  delay(200);
+  ServoMotor(-80);
+  delay(200);
+  ServoMotor(-100);
+  delay(200);
+  ServoMotor(-120);
+  delay(200);
+  
+  ServoMotor(-100);
+  delay(200);
+  ServoMotor(-80);
+  delay(200);
+  ServoMotor(-60);
+  delay(200);
+  ServoMotor(-40);
+  delay(200);
+  
   digitalWrite(A1, HIGH);
   // establish variables for duration of the ping,
   // and the distance result in inches and centimeters:
@@ -148,6 +172,8 @@ void ObstakelDetecteren()
      Serial.println(cm);
      linkerMotor(standL+45);
      rechterMotor(standR-30);
+     
+  
   }
   else
   {
@@ -165,5 +191,13 @@ long microsecondsToInches(long microseconds)
 long microsecondsToCentimeters(long microseconds)
 {
   return microseconds / 29 / 2;
+}
+
+
+
+void ServoMotor(int hoek)
+{
+  digitalWrite(servoMotorPin, LOW);
+  analogWrite(servoMotorPin,hoek);
 }
 
